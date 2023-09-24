@@ -21,12 +21,81 @@ Creation of an API (REST) to register products and orders.
 
 ## Installation
 
+Clone the repository
+
 ``` cli
+    git clone https://github.com/igorwanbarros/node-express-api.git
+```
+
+Install node dependencies:
+
+```cli
+    npm install
+```
+
+Up the server
+
+```cli
+    // development mode
+    npm run dev
+
+    // production mode
+    npm run build && npm run start
+```
+
+If you use docker as a development tool, use the following steps:
+
+Up the containers:
+
+```cli
+    docker-compose up --build
+
+    // or use `make build`
 ```
 
 ## Running
 
+Up the containers:
+
 ``` cli
+    // with docker-compose
+    docker-compose up --build
+
+    // or
+
+    make build
+    // or `make cli`  if you don't need to recreate.
+```
+
+## Database
+
+Use ![prisma ORM](https://www.prisma.io/).
+
+```cli
+    npx prisma generate
+
+    npx prisma db push
+```
+
+> If you use docker as a development tool, use the following steps
+
+```cli
+    docker ps
+    // get te container ID
+```
+
+With the container ID, run the following command to access the container:
+
+```cli
+    docker exec -it <container-id> sh
+```
+
+After accessing the container, execute the prism commands to generate the tables and schema:
+
+```cli
+    npx prisma generate
+
+    npx prisma db push
 ```
 
 ## Tests
