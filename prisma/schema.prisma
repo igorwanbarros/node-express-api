@@ -34,7 +34,7 @@ model Order {
   updated_at DateTime  @updatedAt @db.Timestamptz(3)
   deleted_at DateTime? @db.Timestamptz(3)
 
-  client    Client      @relation(fields: [client_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  client Client @relation(fields: [client_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   orderItems OrderItem[]
 
