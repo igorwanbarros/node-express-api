@@ -46,7 +46,8 @@ process.on('uncaughtException', (error) => {
   try {
 
     const port = process.env.PORT || 3000
-    const app = new App(+port)
+    const host = process.env.HOST || 'http://localhost'
+    const app = new App(host, +port)
 
     await app.init()
     app.start()

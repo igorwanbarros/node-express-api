@@ -1,4 +1,4 @@
-import { ApiError } from "@utils/errors/api-error"
+import { ApiValidationError } from "@utils/errors/api-error"
 import { InternalError } from "@utils/errors/internal-error"
 import { NextFunction, Request, Response } from "express"
 
@@ -12,7 +12,7 @@ export default (
   res: Response,
   __: NextFunction
 ): void => {
-  if (error instanceof ApiError) {
+  if (error instanceof ApiValidationError) {
     res.status(error.code).json({
       message: error.message,
       errors: error.errors(),
