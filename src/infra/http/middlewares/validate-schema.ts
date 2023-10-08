@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { SchemaValidation } from "../validations";
+import { SchemaValidation } from "../validations/type";
 import { ValidationMessageError } from "@utils/errors/api-error";
 
 export default (

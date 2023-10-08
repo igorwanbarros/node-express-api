@@ -1,0 +1,50 @@
+@URL = http://localhost:3000
+@AUTH = 
+
+# ----------------------------------------
+# PRODUCTS
+# ----------------------------------------
+
+# List
+GET {{URL}}/api/v1/products
+Accept: application/json
+# Authorization: {{AUTH}}
+Content-Type: application/json
+
+###
+
+# Create
+POST {{URL}}/api/v1/products
+Accept: application/json
+# Authorization: {{AUTH}}
+Content-Type: application/json
+
+{
+    "name": "new product",
+    "description": null,
+    "price": 4.99
+}
+###
+
+# Update
+PUT {{URL}}/api/v1/products/974bd851-cfa5-436c-b591-4dcda3c48708
+Accept: application/json
+# Authorization: {{AUTH}}
+Content-Type: application/json
+
+{
+    "name": "update new product",
+    "description": null,
+    "price": 4.99
+}
+###
+
+# Update
+DELETE  {{URL}}/api/v1/products/974bd851-cfa5-436c-b591-4dcda3c48708
+Accept: application/json
+# Authorization: {{AUTH}}
+Content-Type: application/json
+
+###
+
+# ----------------------------------------

@@ -1,21 +1,18 @@
+import { ProductsController } from "@infra/http/controllers/products.controller";
 import { Response, Router } from "express";
+import { validations } from "@infra/http/validations/products.validation";
+import validateSchema from "@infra/http/middlewares/validate-schema";
 
 const router = Router();
+const controller = new ProductsController();
 
-router.get('/products', (_, res: Response) => {
-    res.json({ message: 'ok' });
-});
 
-router.post('/products', (_, res: Response) => {
-    res.json({ message: 'ok' });
-});
+router.get('/products', validateSchema(validations.list), controller.list);
 
-router.put('/products', (_, res: Response) => {
-    res.json({ message: 'ok' });
-});
+router.post('/products', validateSchema(validations.create), controller.create);
 
-router.delete('/products', (_, res: Response) => {
-    res.json({ message: 'ok' });
-});
+router.put('/products/:id', validateSchema(validations.update), controller.update);
+
+router.delete('/products/:id', validateSchema(validations.delete), controller.delete);
 
 export default router;
