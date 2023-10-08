@@ -2,28 +2,30 @@ import cors from 'cors'
 import express, { json, urlencoded } from 'express'
 import http from 'http'
 import ValidationError from './http/middlewares/validation-error'
-import { InternalError } from '@utils/errors/internal-error'
-import { ApiError } from '@utils/errors/api-error'
+import { routers } from './routes'
 
 export default class App {
   private app: express.Express = express()
   private server: http.Server | null = null
 
-  public constructor(private readonly port = 3000) {}
+  public constructor(
+    private readonly host: string,
+    private readonly port = 3000
+  ) {}
 
   public async init(): Promise<void> {
     this.app.use(json())
     this.app.use(urlencoded({ extended: true }))
     this.app.use(cors({ origin: '*' }))
     this.app.use(ValidationError)
-    this.app.get('/', (_, res) => {
-      res.json({ message: 'ok' })
-    })
+
+    this.app.use('/', routers.infos)
+    this.app.use('/api/v1/', routers.endpoints)
   }
 
   public start(): http.Server {
     this.server = this.app.listen(this.port, () => {
-      console.log(`> Server listening on port http://localhost:${this.port}`)
+      console.log(`> Server listening on port ${this.host}:${this.port}`)
     })
 
     return this.server
