@@ -1,13 +1,13 @@
 import { InternalError } from "./internal-error"
 
-interface ValidationMessageError {
+export interface ValidationMessageError {
   field: string
   message: string
 }
 
 export class ApiValidationError extends InternalError {
   constructor(
-    private messageError: Array<ValidationMessageError>,
+    private messageError: ValidationMessageError[],
     message = 'An error ocurred.',
     code = 500
   ) {

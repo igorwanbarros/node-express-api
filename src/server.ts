@@ -53,8 +53,8 @@ process.on('uncaughtException', (error) => {
     app.start()
   
     const exitSignals: NodeJS.Signals[] = [
-      // 'SIGINT',
-      // 'SIGTERM',
+      'SIGINT',
+      'SIGTERM',
       'SIGQUIT'
     ]
 
