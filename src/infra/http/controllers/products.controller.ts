@@ -8,7 +8,7 @@ export class ProductsController {
     }
 
     public async create(_: Request, response: Response): Promise<void> {
-        response.status(204).send()
+        response.status(201).send()
     }
 
     public async update(_: Request, response: Response): Promise<void> {

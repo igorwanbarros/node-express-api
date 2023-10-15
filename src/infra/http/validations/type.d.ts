@@ -1,10 +1,10 @@
 import { ObjectSchema } from "joi";
 
 export type SchemaValidation = {
-    headers?: ObjectSchema | null;
-    body?: ObjectSchema | null;
-    query?: ObjectSchema | null;
-    params?: ObjectSchema | null;
+    headers?: ObjectSchema;
+    body?: ObjectSchema;
+    query?: ObjectSchema;
+    params?: ObjectSchema;
 };
 
-export type Schema = { [key: string]: SchemaValidation }
+export type Schema = Record<string, SchemaValidation>;

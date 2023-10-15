@@ -38,7 +38,8 @@
     "noImplicitReturns": true,
 
     /* Completeness */
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "noUncheckedIndexedAccess": true
   },
   "include": ["./src/**/*.ts"],
   "exclude": ["./node_modules/*", "dist/*"],

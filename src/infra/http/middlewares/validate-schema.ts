@@ -3,8 +3,12 @@ import { SchemaValidation } from "../validations/type";
 import { ValidationMessageError } from "@utils/errors/api-error";
 
 export default (
-    validation: SchemaValidation
+    validation?: SchemaValidation
 ): (req: Request, res: Response, next: NextFunction) => void => {
+    if (!validation) {
+        return (_req, _res, next) => next();
+    }
+
     return (req, res, next) => {
         const errors: ValidationMessageError[] = [];
 

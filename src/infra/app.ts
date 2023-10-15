@@ -3,6 +3,8 @@ import express, { json, urlencoded } from 'express'
 import http from 'http'
 import ValidationError from './http/middlewares/validation-error'
 import { routers } from './routes'
+import swaggerUi from 'swagger-ui-express'
+import { apiDocs } from 'src/api-docs/schema'
 
 export default class App {
   private app: express.Express = express()
@@ -11,7 +13,7 @@ export default class App {
   public constructor(
     private readonly host: string,
     private readonly port = 3000
-  ) {}
+  ) { }
 
   public async init(): Promise<void> {
     this.app.use(json())
@@ -21,6 +23,8 @@ export default class App {
 
     this.app.use('/', routers.infos)
     this.app.use('/api/v1/', routers.endpoints)
+
+    this.apiDocs();
   }
 
   public start(): http.Server {
@@ -48,5 +52,13 @@ export default class App {
         })
       })
     }
+  }
+
+  private apiDocs() {
+    this.app.use(
+      "/api-docs",
+      swaggerUi.serve,
+      swaggerUi.setup(apiDocs)
+    );
   }
 }
