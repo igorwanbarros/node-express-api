@@ -12,17 +12,21 @@ cli:
 	&& docker-compose up
 
 build:
-	@printf "${INFO} buil and up containers...\n" \
+	@printf "${INFO} build and up containers...\n" \
 	&& docker-compose up --build
 
 app:
-	@printf "${INFRO} run app container...\n" \
+	@printf "${INFO} run app container...\n" \
 	&& docker-compose up -d app --build
 
 database:
-	@printf "${INFRO} run database container...\n" \
+	@printf "${INFO} run database container...\n" \
 	&& docker-compose up -d postgres_express_api --build
 
 down:
 	@printf "${INFO} down all containers...\n" \
 	&& docker-compose down --remove-orphans
+
+prisma-generate:
+	@printf "${INFO} push database changes...\n" \
+	&& npx dotenv -e .env.development -- prisma db push
