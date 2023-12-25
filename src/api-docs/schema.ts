@@ -1,4 +1,5 @@
 import products from './products.docs';
+import clients from './clients.docs';
 
 const host = process.env.HOST ?? 'http://localhost';
 const port = process.env.PORT ?? '3000';
@@ -31,7 +32,8 @@ const apiDocs = {
         { name: 'orders' },
     ],
     paths: {
-        ...products.paths
+        ...products.paths,
+        ...clients.paths,
     },
     components: {
         securitySchemes: {

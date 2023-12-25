@@ -4,7 +4,7 @@ import http from 'http'
 import { createExpressServer } from 'routing-controllers'
 import swaggerUi from 'swagger-ui-express'
 import ValidationError from '@infra/http/middlewares/validation-error'
-import { routers } from '@infra/routes'
+import routerInfo, { routers } from '@infra/routes'
 import { apiDocs } from 'src/api-docs/schema'
 
 export class App {
@@ -32,8 +32,11 @@ export class App {
       res.status(500).send({message: 'Something went wrong.'})
     })
 
-    this.app.use('/', routers.infos)
-    this.app.use('/api/v1/', routers.products)
+    this.app.use('/', routerInfo)
+
+    Object.values(routers).forEach(router => {
+      this.app.use('/api/v1/', router)
+    });
 
     this.app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(apiDocs));
 
