@@ -1,8 +1,10 @@
-FROM node:lts-alpine3.18
+FROM node:21.0.0-slim
 
 WORKDIR /usr/app
 
 COPY ./package*.json ./
+
+RUN apt-get update -y && apt-get install -y openssl
 
 RUN npm install
 
