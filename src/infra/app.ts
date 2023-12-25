@@ -1,35 +1,44 @@
 import cors from 'cors'
-import express, { json, urlencoded } from 'express'
+import express, { NextFunction, Request, Response, json, urlencoded } from 'express'
 import http from 'http'
-import ValidationError from './http/middlewares/validation-error'
-import { routers } from './routes'
+import { createExpressServer } from 'routing-controllers'
 import swaggerUi from 'swagger-ui-express'
+import ValidationError from '@infra/http/middlewares/validation-error'
+import { routers } from '@infra/routes'
 import { apiDocs } from 'src/api-docs/schema'
 
-export default class App {
-  private app: express.Express = express()
+export class App {
+  private app: express.Express
   private server: http.Server | null = null
 
   public constructor(
     private readonly host: string,
     private readonly port = 3000
-  ) { }
+  ) {
+    this.app = express()
+    this.app = createExpressServer({
+      routePrefix: '/api/v1',
+    })
+  }
 
-  public async init(): Promise<void> {
+  public async start(): Promise<http.Server> {
     this.app.use(json())
     this.app.use(urlencoded({ extended: true }))
     this.app.use(cors({ origin: '*' }))
     this.app.use(ValidationError)
 
+    this.app.use((err: Error, _: Request, res: Response, __: NextFunction) => {
+      console.error(err.stack)
+      res.status(500).send({message: 'Something went wrong.'})
+    })
+
     this.app.use('/', routers.infos)
-    this.app.use('/api/v1/', routers.endpoints)
+    this.app.use('/api/v1/', routers.products)
 
-    this.apiDocs();
-  }
+    this.app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(apiDocs));
 
-  public start(): http.Server {
     this.server = this.app.listen(this.port, () => {
-      console.log(`> Server listening on port ${this.host}:${this.port}`)
+      console.info(`> Server listening on host: ${this.host}:${this.port}`)
     })
 
     return this.server
@@ -52,13 +61,5 @@ export default class App {
         })
       })
     }
-  }
-
-  private apiDocs() {
-    this.app.use(
-      "/api-docs",
-      swaggerUi.serve,
-      swaggerUi.setup(apiDocs)
-    );
   }
 }
