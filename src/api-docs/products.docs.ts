@@ -3,9 +3,7 @@ const list = {
   description: 'List all products',
   operationId: 'products.list',
   security: [
-    {
-      bearerAuth: [],
-    },
+    { bearerAuth: [] },
   ],
   parameters: [
     {
@@ -23,37 +21,20 @@ const list = {
       schema: {
         type: 'string'
       }
+    },
+    {
+      name: 'active',
+      in: 'query',
+      required: false,
+      schema: {
+        type: 'boolean'
+      }
     }
   ],
   responses: {
-    '200': {
-      content: {
-        'application/json': {
-          schema: {
-            type: 'object',
-            properties: {
-              data: {
-                type: 'array',
-                items: {
-                  $ref: '#/components/schemas/products.response'
-                },
-              }
-            },
-          },
-        },
-      },
-    },
-    '500': {
-      description: 'Internal Server Error',
-      content: {
-        'application/json': {
-          schema: {
-            type: 'object',
-            $ref: '#/components/schemas/products.internal-error'
-          },
-        },
-      },
-    },
+    default: {
+      description: "Response..."
+    }
   }
 };
 
@@ -70,34 +51,31 @@ const create = {
     content: {
       'application/json': {
         schema: {
-          $ref: '#/components/schemas/products.create.body',
+          type: 'object',
+          properties: {
+            name: {
+              type: 'string',
+              example: 'New Product',
+            },
+            description: {
+              type: 'string',
+              example: 'product description',
+            },
+            price: {
+              type: 'numeric',
+              description: "price of product",
+              example: 42.5,
+            },
+          },
         },
       },
     },
     required: true,
   },
   responses: {
-    '201': {
-      description: 'Product created successfully!',
-      content: {
-        'application/json': {
-          schema: {
-            $ref: '#/components/schemas/products.response',
-          },
-        },
-      },
-    },
-    '500': {
-      description: 'Internal Server Error',
-      content: {
-        'application/json': {
-          schema: {
-            type: 'object',
-            $ref: '#/components/schemas/products.internal-error'
-          },
-        },
-      },
-    },
+    default: {
+      description: "Response..."
+    }
   }
 };
 
@@ -112,7 +90,7 @@ const update = {
   ],
   parameters: [
     {
-      name: 'productId',
+      name: 'id',
       in: 'path',
       required: true,
       schema: {
@@ -124,45 +102,31 @@ const update = {
     content: {
       'application/json': {
         schema: {
-          $ref: '#/components/schemas/products.update.body',
+          type: 'object',
+          properties: {
+            name: {
+              type: 'string',
+              example: 'New Product',
+            },
+            description: {
+              type: 'string',
+              example: 'product description',
+            },
+            price: {
+              type: 'numeric',
+              description: "price of product",
+              example: 42.5,
+            },
+          },
         },
       },
     },
     required: true,
   },
   responses: {
-    '200': {
-      description: 'Product updated successfully!',
-      content: {
-        'application/json': {
-          schema: {
-            $ref: '#/components/schemas/products.response',
-          },
-        },
-      },
-    },
-    '404': {
-      description: 'Resource not found',
-      content: {
-        'application/json': {
-          schema: {
-            type: 'object',
-            $ref: '#/components/schemas/products.not-found'
-          },
-        },
-      },
-    },
-    '500': {
-      description: 'Internal Server Error',
-      content: {
-        'application/json': {
-          schema: {
-            type: 'object',
-            $ref: '#/components/schemas/products.internal-error'
-          },
-        },
-      },
-    },
+    default: {
+      description: "Response..."
+    }
   }
 };
 
@@ -177,7 +141,7 @@ const remove = {
   ],
   parameters: [
     {
-      name: 'productId',
+      name: 'id',
       in: 'path',
       required: true,
       schema: {
@@ -186,124 +150,9 @@ const remove = {
     },
   ],
   responses: {
-    '204': {
-      description: 'noContent',
-      content: null,
-    },
-    '404': {
-      description: 'Resource not found',
-      content: {
-        'application/json': {
-          schema: {
-            type: 'object',
-            $ref: '#/components/schemas/products.not-found'
-          },
-        },
-      },
-    },
-    '500': {
-      description: 'Internal Server Error',
-      content: {
-        'application/json': {
-          schema: {
-            type: 'object',
-            $ref: '#/components/schemas/products.internal-error'
-          },
-        },
-      },
-    },
-  }
-};
-
-
-const responseDefault = {
-  type: 'object',
-  properties: {
-    id: {
-      type: 'string',
-      example: 'UUID',
-    },
-    name: {
-      type: 'string',
-      example: 'New Product',
-    },
-    description: {
-      type: 'string',
-      example: 'product description',
-    },
-    price: {
-      type: 'numeric',
-      description: "price of product",
-      example: 42.5,
-    },
-    createdAt: {
-      type: 'string',
-      description: "created date",
-      example: "2023-01-01T00:00:00Z",
-    },
-    updatedAt: {
-      type: 'string',
-      description: "updated date",
-      example: "2023-01-01T00:00:00Z",
-    },
-  },
-};
-
-const bodyCreated = {
-  type: 'object',
-  properties: {
-    name: {
-      type: 'string',
-      example: 'New Product',
-    },
-    description: {
-      type: 'string',
-      example: 'product description',
-    },
-    price: {
-      type: 'numeric',
-      description: "price of product",
-      example: 42.5,
-    },
-  },
-};
-
-const bodyUpdated = {
-  type: 'object',
-  properties: {
-    name: {
-      type: 'string',
-      example: 'New Product',
-    },
-    description: {
-      type: 'string',
-      example: 'product description',
-    },
-    price: {
-      type: 'numeric',
-      description: "price of product",
-      example: 42.5,
-    },
-  },
-};
-
-const notFound = {
-  type: 'object',
-  properties: {
-    message: {
-      type: 'string',
-      example: 'No Product found',
-    },
-  }
-};
-
-const internalError = {
-  type: 'object',
-  properties: {
-    message: {
-      type: 'string',
-      example: 'Internal Server Error',
-    },
+    default: {
+      description: "Response..."
+    }
   }
 };
 
@@ -313,16 +162,16 @@ export default {
       get: list,
       post: create,
     },
-    "/api/v1/products/{productId}": {
+    "/api/v1/products/{id}": {
       put: update,
       delete: remove,
     },
   },
-  schemas: {
-    ['products.response']: responseDefault,
-    ['products.not-found']: notFound,
-    ['products.internal-error']: internalError,
-    ['products.create.body']: bodyCreated,
-    ['products.update.body']: bodyUpdated,
-  }
+  // schemas: {
+  //   ['products.response']: responseDefault,
+  //   ['products.not-found']: notFound,
+  //   ['products.internal-error']: internalError,
+  //   ['products.create.body']: bodyCreated,
+  //   ['products.update.body']: bodyUpdated,
+  // }
 }

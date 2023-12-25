@@ -41,9 +41,6 @@ const apiDocs = {
                 bearerFormat: 'JWT',
             },
         },
-        schemas: {
-            ...products.schemas,
-        },
     },
 };
 

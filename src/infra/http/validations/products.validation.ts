@@ -6,6 +6,7 @@ const validations: Schema = {
         query: Joi.object({
             id: Joi.string().uuid(),
             name: Joi.string().min(3).max(255),
+            active: Joi.boolean().truthy('true').falsy('false').default('true'),
         }),
     },
     create: {
@@ -17,9 +18,9 @@ const validations: Schema = {
     },
     update: {
         body: Joi.object({
-            name: Joi.string().min(3).max(255).not(null),
-            description: Joi.string().min(3).max(255).allow(null),
-            price: Joi.number().positive().precision(2).max(999999999),
+            name: Joi.string().min(3).max(255).optional(),
+            description: Joi.string().min(3).max(255).optional(),
+            price: Joi.number().positive().precision(2).max(999999999).optional(),
         }),
         params: Joi.object({
             id: Joi.string().uuid().required(),
