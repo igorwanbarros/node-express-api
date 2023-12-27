@@ -7,13 +7,13 @@ export class ProductService {
     ) { }
 
     public async list(dto: ProductFilterDto): Promise<ProductDto[]> {
-        if (typeof dto.active === 'string') {
+        if (typeof dto?.active === 'string') {
             dto.active = dto.active === 'true';
         }
 
         const products = await this.repository.all(dto);
 
-        return products.map(product => convertToProductDto(product));
+        return products?.map(product => convertToProductDto(product));
     }
 
     public async create(dto: ProductCreateDto): Promise<ProductDto> {

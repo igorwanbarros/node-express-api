@@ -22,7 +22,7 @@ export class ProductRepository {
             }
         });
 
-        return products;
+        return products ?? [];
     }
 
     public async find(id: string): Promise<Product> {
