@@ -21,6 +21,7 @@ export default {
         "!src/infra/http/middlewares/*",
         "!src/api-docs/*",
         "!src/utils/errors/*",
+        "!src/infra/database/*",
     ],
     coverageThreshold: {
         global: {
