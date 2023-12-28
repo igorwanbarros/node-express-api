@@ -5,6 +5,7 @@
 ![GitHub language count](https://img.shields.io/github/languages/count/igorwanbarros/node-express-api?style=for-the-badge "Languages")
 ![GitHub forks](https://img.shields.io/github/forks/igorwanbarros/node-express-api?style=for-the-badge "Forks")
 ![Github open issues](https://img.shields.io/github/issues/igorwanbarros/node-express-api?style=for-the-badge "Issues")
+[![Coverage](https://igorwanbarros.github.io/node-express-api/badges/coverage.svg)](https://github.com/igorwanbarros/node-express-api/actions)
 
 This project aims to create an API using the express framework (node js).
 
