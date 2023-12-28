@@ -1,11 +1,11 @@
 # node-express-api
 
-![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/t/igorwanbarros/node-express-api?style=for-the-badge "Commits")
-![GitHub repo size](https://img.shields.io/github/repo-size/igorwanbarros/node-express-api?style=for-the-badge "Repo Size")
-![GitHub language count](https://img.shields.io/github/languages/count/igorwanbarros/node-express-api?style=for-the-badge "Languages")
-![GitHub forks](https://img.shields.io/github/forks/igorwanbarros/node-express-api?style=for-the-badge "Forks")
-![Github open issues](https://img.shields.io/github/issues/igorwanbarros/node-express-api?style=for-the-badge "Issues")
-[![Coverage](https://igorwanbarros.github.io/node-express-api/badges/coverage.svg)](https://github.com/igorwanbarros/node-express-api/actions)
+![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/t/igorwanbarros/node-express-api?style=for-the-badge&logo=github&logoColor=white "Commits")
+![GitHub repo size](https://img.shields.io/github/repo-size/igorwanbarros/node-express-api?style=for-the-badge&logo=github&logoColor=white "Repo Size")
+![GitHub language count](https://img.shields.io/github/languages/count/igorwanbarros/node-express-api?style=for-the-badge&logo=tsnode&logoColor=white "Languages")
+![GitHub forks](https://img.shields.io/github/forks/igorwanbarros/node-express-api?style=for-the-badge&logo=github&logoColor=white "Forks")
+![Github open issues](https://img.shields.io/github/issues/igorwanbarros/node-express-api?style=for-the-badge&logo=github&logoColor=white "Issues")
+![Github coverage](https://img.shields.io/github/actions/workflow/status/igorwanbarros/node-express-api/github.actions.yml?style=for-the-badge&logo=githubactions&logoColor=white&label=coverage)
 
 This project aims to create an API using the express framework (node js).
 
