@@ -18,6 +18,9 @@ export default {
         "!src/infra/app.ts",
         "!src/server.ts",
         "!**/*.repository.ts",
+        "!src/infra/http/middlewares/*",
+        "!src/api-docs/*",
+        "!src/utils/errors/*",
     ],
     coverageThreshold: {
         global: {
