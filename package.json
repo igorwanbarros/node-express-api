@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "npx env-cmd -f .env.development ts-node-dev -r tsconfig-paths/register ./src/server.ts",
     "start": "node ./dist/server.js",
-    "test": "npx env-cmd -f .env.testing -- jest --config jest.config.ts --projects ./test --forceExit --runInBand --detectOpenHandles --coverage",
-    "test:dev": "npx env-cmd -f .env.development -- jest --config jest.config.ts --projects ./test --forceExit --runInBand --detectOpenHandles --watch --coverage",
+    "test": "npx env-cmd -f .env.testing -- jest --config jest.config.ts --projects ./test --forceExit --runInBand --detectOpenHandles  --coverageReporters=\"json-summary\" --coverage",
+    "test:dev": "npx env-cmd -f .env.development -- jest --config jest.config.ts --projects ./test --forceExit --runInBand --detectOpenHandles --watch --coverageReporters=\"json-summary\" --coverage",
     "build": "tsc --build"
   },
   "repository": {
